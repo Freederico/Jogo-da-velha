@@ -70,7 +70,7 @@ function checkGame(){
     }else if(checkWinnerFor('o')){
         warnig = 'O "o" venceu' 
         playing = false;
-    }else if(ifFull()){
+    }else if(isFull()){
         warnig = 'Deu empate'
         playing = false
     }
@@ -89,20 +89,19 @@ function checkWinnerFor(player){
     for(let w in pos){
        let pArray = pos[w].split(',');
 
-       let hasWon =  pArray.every((option)=>{
-          if( square[option] === player){
-            return true;
-          }else{
-            return false;
-          } 
-           
-       })
-       
+       let hasWon = pArray.every(option => square[option] === player);
        if(hasWon){
         return true;
        }
     }
+    return false;
 }
 function isFull(){
+    for(let i in square){
+        if(square[i]  === ''){
+            return false;
+        }
+    }
 
+    return true;
 }
