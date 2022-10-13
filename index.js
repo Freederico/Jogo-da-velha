@@ -77,25 +77,31 @@ function checkGame(){
 
 }
 
-function checkWinnerFor(player){
+function checkWinnerFor(i){
     let pos = [
-        'a1','a2','a3',
-        'b1','b2','b3',
-        'c1','c2','c3',
-        'a1','b2','c3',
-        'a3','b2','c1'
-    ]
+        'a1,a2,a3',
+        'b1,b2,b3',
+        'c1,c2,c3',
+
+        'a1,b1,c1',
+        'a2,b2,c2',
+        'a3,b3,c3',
+
+        'a1,b2,c3',
+        'a3,b2,c1'
+    ];
 
     for(let w in pos){
        let pArray = pos[w].split(',');
-
-       let hasWon = pArray.every(option => square[option] === player);
+       let hasWon = pArray.every(option => square[option] === i);
        if(hasWon){
         return true;
        }
     }
     return false;
 }
+
+
 function isFull(){
     for(let i in square){
         if(square[i]  === ''){
